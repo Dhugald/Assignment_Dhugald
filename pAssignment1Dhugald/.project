@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>pAssignment1Dhugald</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>Last100CSGO_Matches.csv</name>
+			<type>1</type>
+			<location>C:/Users/Dhuga/OneDrive - Otago Polytechnic/IN165New/pAssignment1Dhugald/Last100CSGO_Matches.csv</location>
+		</link>
+		<link>
+			<name>csgo.jpg</name>
+			<type>1</type>
+			<location>C:/Users/Dhuga/OneDrive/Pictures/csgo.jpg</location>
+		</link>
+	</linkedResources>
+</projectDescription>
