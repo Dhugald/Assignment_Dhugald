@@ -30,7 +30,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-
+/**
+ * <h1>CSGO GUI class</h1>
+ * @author Dhugald Spry
+ * <br>
+ * <p>
+ * <h3>This class is used to create the GUI to display the information about the recent 100 CSGO matches</h3> 
+ * </p>
+ */
 public class CSGOGUI extends JFrame{
 
 	private static ArrayList<Games>matches;
@@ -44,7 +51,6 @@ public class CSGOGUI extends JFrame{
 			}
 		);
 	private JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	private JComboBox comboBox;
 	private JList maps;
 	private JTextField txtDate;
 	private JTextField txtTeamOne;
@@ -74,6 +80,7 @@ public class CSGOGUI extends JFrame{
 	private ImageIcon image;
 	/**
 	 * Launch the application.
+	 * @param args an array of command-line arguments for the application
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -89,7 +96,8 @@ public class CSGOGUI extends JFrame{
 	}
 
 	/**
-	 * Create the frame.
+	 * <h1>Constructor</h1>
+	 * @param matches, the list of matches.
 	 */
 	public CSGOGUI(ArrayList<Games>matches) {
 		this.matches = matches;
@@ -128,7 +136,10 @@ public class CSGOGUI extends JFrame{
 		});
 		ResetButton.setBounds(935, 615, 89, 35);
 		panel.add(ResetButton);
-		
+		/**
+		 * <h1>Maps list</h1>
+		 * <p>The list of maps, used to sort the data on the table </p>
+		 */
 		maps = new JList();
 		maps.setBounds(10, 12, 198, 171);
 		panel.add(maps);
@@ -150,16 +161,6 @@ public class CSGOGUI extends JFrame{
 			}
 			
 		});
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Default","Rank Team 1", "Rank Team 2", "CT Rounds T 1", "CT Rounds T 2", "T Rounds T 1", "T Rounds T2"}));
-		comboBox.setBounds(218, 35, 150, 22);
-		panel.add(comboBox);
-		
-		JFormattedTextField frmtdtxtfldSortBy = new JFormattedTextField();
-		frmtdtxtfldSortBy.setText("Sort By:");
-		frmtdtxtfldSortBy.setEditable(false);
-		frmtdtxtfldSortBy.setBounds(218, 10, 150, 20);
-		panel.add(frmtdtxtfldSortBy);
 		
 		
 		JLabel lblNewLabel = new JLabel(new ImageIcon("csgo.jpg"));
@@ -286,6 +287,13 @@ public class CSGOGUI extends JFrame{
 		txtTeamTwoRank.setBounds(536, 376, 100, 20);
 		panel_1.add(txtTeamTwoRank);
 		
+/**
+ * <h2>Next game and Previous Game buttons</h2>
+ * <p>These are used to select the next and previous games on the individual matches panel</p>
+ * 
+ * <h2>First and last games buttons</h2>
+ * <p>These are used to go to the first index and the last index of the array
+ */
 		JButton NextData = new JButton("Next Game");
 		NextData.addMouseListener(new MouseAdapter() {
 			@Override
@@ -311,6 +319,33 @@ public class CSGOGUI extends JFrame{
 		});
 		PrevData.setBounds(259, 544, 137, 23);
 		panel_1.add(PrevData);
+		JButton btnNewButton = new JButton("First");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					listNum = 0;
+					populateFields(listNum);
+					SetMap(listNum);
+					mapImg.setIcon(image);
+				}
+		});
+		
+		btnNewButton.setBounds(140, 544, 89, 23);
+		panel_1.add(btnNewButton);
+		
+		JButton btnLast = new JButton("last");
+	btnLast.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					listNum = 98;
+					populateFields(listNum);
+					SetMap(listNum);
+					mapImg.setIcon(image);
+				}
+		});
+		btnLast.setBounds(705, 544, 89, 23);
+		panel_1.add(btnLast);
+		
 		
 		MatchIDBox = new JFormattedTextField();
 		MatchIDBox.setEditable(false);
@@ -335,42 +370,24 @@ public class CSGOGUI extends JFrame{
 		panel_1.add(mapImg);
 		mapImg.setIcon(image);
 		
-		JButton btnNewButton = new JButton("First");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					listNum = 0;
-					populateFields(listNum);
-					SetMap(listNum);
-					mapImg.setIcon(image);
-				}
-		});
-		btnNewButton.setBounds(140, 544, 89, 23);
-		panel_1.add(btnNewButton);
-		
-		JButton btnLast = new JButton("last");
-	btnLast.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					listNum = 98;
-					populateFields(listNum);
-					SetMap(listNum);
-					mapImg.setIcon(image);
-				}
-		});
-		btnLast.setBounds(705, 544, 89, 23);
-		panel_1.add(btnLast);
-		
 
+		/**
+		 * <h4>calling methods</h4>
+		 * <p>These are the default methods, they get edited in different sections</p>
+		 */
 		drawTable();
-		createTeamsGraph();
+		createMapsGraph();
 		populateFields(listNum);
 		
 		
 		
 	}
 
-
+	/**
+	 * 
+	 * @param listNum - used to give a position in the matches list to find the selected map
+	 * 		  to display the image
+	 */
 	public void SetMap(int listNum) {
 		if(listNum > (0-1) && listNum < matches.size()) {
 		if(matches.get(listNum).getMap().equals("Dust2")) {
@@ -400,7 +417,11 @@ public class CSGOGUI extends JFrame{
 		}
 		
 	}
-	
+	/**
+	 * 
+	 * @param listNum - used to find the selected data to fill the text boxes
+	 * 		  with data on the match in that position
+	 */
 	public void populateFields(int listNum) {
 		
 		if(listNum > (0-1) && listNum < matches.size()) {
@@ -423,12 +444,16 @@ public class CSGOGUI extends JFrame{
 
 
 	}
-	
+	/**
+	 * <h1>drawTable</h1>
+	 * 
+	 * <p>The draw table method is called to fill the table with the data on the CSGO matches</p>
+	 */
 	public void drawTable() 
 	{
 		tm.setRowCount(0);
 		
-		for(int i = 0; i < 99; i++) {
+		for(int i = 0; i < matches.size(); i++) {
 			Object[] object = new Object[16];
 			object[0]=  matches.get(i).getDate();
 			object[1]=  matches.get(i).getTeam1();
@@ -453,9 +478,13 @@ public class CSGOGUI extends JFrame{
 
 		table.setAutoCreateRowSorter(true);
 	}
-	public void createTeamsGraph() {
+	/**
+	 * <h1>createMapsGraph</h1>
+	 * <p>Used to create a graph of the times the maps were played</p>
+	 */
+	public void createMapsGraph() {
 		DefaultPieDataset data = new DefaultPieDataset();
-		for(int i = 0; i < 99; i++) {
+		for(int i = 0; i < matches.size(); i++) {
 			data.setValue(matches.get(i).getMap(), i);
 		}
 		
@@ -467,10 +496,15 @@ public class CSGOGUI extends JFrame{
 		tabbedPane.add("Graph", mypanel);
 		
 	}
+	/**
+	 * <h1>mapsMouseClicked</h1>
+	 * <p>This method is just like the drawTable, but it has a check to see<br> if the map is the same as the selected
+	 * map from the list box.</p>
+	 */
 	public void mapsMouseClicked() {
 		tm.setRowCount(0);
 	
-		for(int i = 0; i < 99; i++) {
+		for(int i = 0; i < matches.size(); i++) {
 			Object[] object2 = new Object[16];
 			object2[0]=  matches.get(i).getDate();
 			object2[1]=  matches.get(i).getTeam1();
