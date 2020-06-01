@@ -4,9 +4,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * <header><h1>Reader class</h1></header>
+ * @author Dhugald Spry
+ *
+ *<p>This is the class that reads the CSV file into a list
+ */
 public class BaseReader {
 
+	/**
+	 * 
+	 * @param matches
+	 */
 	public static void load(ArrayList<Games> matches)
 	{
 	String date;

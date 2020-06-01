@@ -1,7 +1,14 @@
 package pAssignment1Dhugald;
 
 import java.time.LocalDate;
-
+/**
+ * <Header><h1>Games class</h1></header>
+ * 
+ * @author Dhugald Spry
+ *
+ *
+ *
+ */
 public class Games implements Comparable<Games>{
 	private String date;
 	private String team1;
