@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class BaseReader {
 
 	/**
-	 * 
 	 * @param matches
 	 */
 	public static void load(ArrayList<Games> matches)
